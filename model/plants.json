@@ -1,0 +1,234 @@
+{
+  "Aerva lanata (Bui Jhar)": {
+    "scientific": "Aerva lanata",
+    "benefits": [
+      "Helps in kidney stones",
+      "Acts as a diuretic",
+      "Supports urinary tract health"
+    ]
+  },
+  "Aloe vera (Ghiu Kumari)": {
+    "scientific": "Aloe vera",
+    "benefits": [
+      "Helps in skin healing",
+      "Aids digestion",
+      "Boosts immunity"
+    ]
+  },
+  "Andrographis paniculata (Kalmegh)": {
+    "scientific": "Andrographis paniculata",
+    "benefits": [
+      "Supports liver health",
+      "Boosts immunity"
+    ]
+  },
+  "Bacopa monnieri (Brahmi)": {
+    "scientific": "Bacopa monnieri",
+    "benefits": [
+      "Improves memory",
+      "Reduces stress"
+    ]
+  },
+  "Calotropis gigantea (Aank)": {
+    "scientific": "Calotropis gigantea",
+    "benefits": [
+      "Used for skin diseases",
+      "Aids digestion"
+    ]
+  },
+  "Centella asiatica (Ghodtapre)": {
+    "scientific": "Centella asiatica",
+    "benefits": [
+      "Promotes wound healing",
+      "Improves mental clarity"
+    ]
+  },
+  "Chromolaena odorata (Banmara)": {
+    "scientific": "Chromolaena odorata",
+    "benefits": [
+      "Used for wound healing",
+      "Has antibacterial properties"
+    ]
+  },
+  "Cissus quadrangularis (Hadjod)": {
+    "scientific": "Cissus quadrangularis",
+    "benefits": [
+      "Strengthens bones",
+      "Aids fracture healing"
+    ]
+  },
+  "Clerodendrum infortunatum (Bharangi)": {
+    "scientific": "Clerodendrum infortunatum",
+    "benefits": [
+      "Relieves respiratory problems",
+      "Reduces cough"
+    ]
+  },
+  "Clitoria ternatea (Aparajita)": {
+    "scientific": "Clitoria ternatea",
+    "benefits": [
+      "Improves memory",
+      "Reduces stress"
+    ]
+  },
+  "Coccinia grandis (Kundru)": {
+    "scientific": "Coccinia grandis",
+    "benefits": [
+      "Helps manage blood sugar levels"
+    ]
+  },
+  "Curcuma longa (Besar)": {
+    "scientific": "Curcuma longa",
+    "benefits": [
+      "Has anti-inflammatory properties",
+      "Improves digestion"
+    ]
+  },
+  "Datura metal linn (Dhatura)": {
+    "scientific": "Datura metal linn",
+    "benefits": [
+      "Used for respiratory ailments (controlled doses)"
+    ]
+  },
+  "Desmodium gangeticum (Salparni)": {
+    "scientific": "Desmodium gangeticum",
+    "benefits": [
+      "Supports liver health",
+      "Supports kidney health"
+    ]
+  },
+  "Hemigraphis colorata (Muriko Jhar)": {
+    "scientific": "Hemigraphis colorata",
+    "benefits": [
+      "Used for skin diseases",
+      "Promotes wound healing"
+    ]
+  },
+  "Kaempferia galanga linn (Kachur)": {
+    "scientific": "Kaempferia galanga linn",
+    "benefits": [
+      "Helps digestion",
+      "Supports respiratory health"
+    ]
+  },
+  "Mentha spicata (Pudina)": {
+    "scientific": "Mentha spicata",
+    "benefits": [
+      "Relieves indigestion",
+      "Freshens breath"
+    ]
+  },
+  "Ocimum gratissimum (Ban Tulsi)": {
+    "scientific": "Ocimum gratissimum",
+    "benefits": [
+      "Used for respiratory ailments",
+      "Supports skin health"
+    ]
+  },
+  "Ocimum tenuiflorum (Tulsi)": {
+    "scientific": "Ocimum tenuiflorum",
+    "benefits": [
+      "Boosts immunity",
+      "Reduces stress"
+    ]
+  },
+  "Oxalis corniculata (Chari Amilo)": {
+    "scientific": "Oxalis corniculata",
+    "benefits": [
+      "Used for digestive disorders",
+      "Helps reduce fever"
+    ]
+  },
+  "Peperomia pellucida (Jalpapdi)": {
+    "scientific": "Peperomia pellucida",
+    "benefits": [
+      "Relieves inflammation",
+      "Reduces joint pain"
+    ]
+  },
+  "Phyllanthus niruri (Bhui Amala)": {
+    "scientific": "Phyllanthus niruri",
+    "benefits": [
+      "Supports kidney health",
+      "Supports liver health"
+    ]
+  },
+  "Piper betle (Paan)": {
+    "scientific": "Piper betle",
+    "benefits": [
+      "Aids digestion",
+      "Improves oral hygiene"
+    ]
+  },
+  "Piper longum (Pipla)": {
+    "scientific": "Piper longum",
+    "benefits": [
+      "Supports respiratory health",
+      "Improves digestion"
+    ]
+  },
+  "Piper nigrum (Marich)": {
+    "scientific": "Piper nigrum",
+    "benefits": [
+      "Enhances digestion",
+      "Boosts metabolism"
+    ]
+  },
+  "Plectranthus barbatus (Patharchur)": {
+    "scientific": "Plectranthus barbatus",
+    "benefits": [
+      "Supports heart health",
+      "Supports liver health"
+    ]
+  },
+  "Plumbago indica (Chitrak)": {
+    "scientific": "Plumbago indica",
+    "benefits": [
+      "Used for digestive disorders",
+      "Supports skin health"
+    ]
+  },
+  "Pseudarthria viscida (Saliparni)": {
+    "scientific": "Pseudarthria viscida",
+    "benefits": [
+      "Supports joint health",
+      "Supports bone health"
+    ]
+  },
+  "Ricinus communis linn (Aandi)": {
+    "scientific": "Ricinus communis linn",
+    "benefits": [
+      "Used for constipation",
+      "Supports skin health"
+    ]
+  },
+  "Tinospora cordifolia (Gurjo)": {
+    "scientific": "Tinospora cordifolia",
+    "benefits": [
+      "Boosts immunity",
+      "Detoxifies body"
+    ]
+  },
+  "Neem (Azadirachta indica)": {
+    "scientific": "Azadirachta indica",
+    "benefits": [
+      "Purifies blood",
+      "Improves skin health",
+      "Boosts immunity"
+    ]
+  },
+  "Guava (Psidium guajava)": {
+    "scientific": "Psidium guajava",
+    "benefits": [
+      "Rich in vitamin C",
+      "Supports digestion"
+    ]
+  },
+  "Mango (Mangifera indica)": {
+    "scientific": "Mangifera indica",
+    "benefits": [
+      "Boosts immunity",
+      "Provides essential vitamins"
+    ]
+  }
+}

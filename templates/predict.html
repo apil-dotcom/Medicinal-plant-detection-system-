@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Medicinal Plant Detection</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:"Segoe UI", sans-serif;
+    background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e");
+    background-size:cover;
+    min-height:100vh;
+}
+
+.navbar{ background:#1b5e20; }
+
+/* LEFT CARD */
+.upload-card{
+    background:rgba(255,255,255,0.7);
+    border-radius:18px;
+    padding:45px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.upload-box{
+    border:2px dashed #6ccf93;
+    border-radius:14px;
+    padding:45px;
+    cursor:pointer;
+}
+.upload-box:hover{ background:#f3fff7; }
+.upload-box i{ font-size:38px; color:#2e7d32; }
+
+.preview{
+    width:100%;
+    max-height:280px;
+    object-fit:contain;
+    border-radius:12px;
+    background:#f8f9fa;
+    margin-top:15px;
+}
+
+.detect-btn{
+    background:#2e7d32;
+    border:none;
+    padding:12px;
+    border-radius:12px;
+    font-weight:600;
+    color:white;
+}
+
+/* RIGHT PANEL */
+.result-panel{
+    background:rgba(255,255,255,0.8);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+}
+
+.result-title{
+    text-align:center;
+    font-weight:700;
+    color:#2e7d32;
+    margin-bottom:30px;
+}
+
+.result-card{
+    display:flex;
+    gap:18px;
+    padding:20px;
+    border-radius:16px;
+    background:white;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    margin-bottom:20px;
+}
+
+.icon-box{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.card-green{ background:linear-gradient(135deg,#e8f5e9,#fff); }
+.card-green .icon-box{ background:#e8f5e9; color:#2e7d32; }
+
+.card-blue{ background:linear-gradient(135deg,#e3f2fd,#fff); }
+.card-blue .icon-box{ background:#e3f2fd; color:#1976d2; }
+
+.card-orange{ background:linear-gradient(135deg,#fff3e0,#fff); }
+.card-orange .icon-box{ background:#fff3e0; color:#ef6c00; }
+
+.progress{ height:22px; border-radius:12px; }
+.progress-bar{ font-weight:700; }
+
+/* CHATBOT */
+#chatbot-icon{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    background:#27ae60;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    cursor:pointer;
+    z-index:9999;
+}
+
+#chatbot-window{
+    position:fixed;
+    bottom:90px;
+    right:20px;
+    width:320px;
+    height:400px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    display:none;
+    flex-direction:column;
+}
+
+#chat-header{
+    background:#27ae60;
+    color:white;
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+}
+
+#chat-body{
+    flex:1;
+    padding:10px;
+    overflow-y:auto;
+}
+
+#chat-input{
+    flex:1;
+    padding:8px;
+    border:none;
+    border-top:1px solid #ccc;
+}
+
+#send-chat{
+    width:60px;
+    background:#27ae60;
+    color:white;
+    border:none;
+}
+</style>
+</head>
+<script>
+function googleTranslateElementInit(){
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            autoDisplay: false
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<body>
+    <!-- Google Translate (hidden) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<nav class="navbar navbar-dark px-3">
+    <span class="navbar-brand">🌿 Medicinal Plant Detection</span>
+</nav>
+
+<div class="container-fluid px-5 py-4">
+<div class="row">
+
+<!-- LEFT -->
+<div class="col-lg-5">
+    <div class="upload-card text-center">
+        <h3 class="fw-bold text-success">Upload Leaf Image</h3>
+        <p>Upload a plant image for analysis</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label class="upload-box w-100 mb-3">
+                <i class="bi bi-cloud-upload"></i>
+                <p class="fw-semibold mt-2">Click to upload or drag & drop</p>
+                <input type="file" name="image" hidden accept="image/*"
+                       onchange="previewImage(this)" required>
+            </label>
+
+         
+
+            <img
+                id="imagePreview"
+                class="preview"
+                src="{% if image_path %}/{{ image_path }}?v={{ cache_buster }}{% endif %}"
+                style="{% if not image_path %}display:none;{% endif %}"
+            >
+
+
+
+
+            <button class="detect-btn w-100 mt-3">Detect Plant</button>
+        </form>
+    </div>
+</div>
+
+<!-- RIGHT -->
+{% if prediction %}
+<div class="col-lg-7">
+    <div class="result-panel">
+
+        <h3 class="result-title">Analysis Results</h3>
+
+        <div class="result-card card-green">
+            <div class="icon-box"><i class="bi bi-leaf-fill"></i></div>
+            <div>
+                <small>Plant Identified</small>
+                <h6>{{ prediction }}</h6>
+                <small>Scientific Name: {{ scientific_name }}</small>
+            </div>
+        </div>
+
+        {% if confidence %}
+        <div class="result-card card-blue">
+            <div class="icon-box"><i class="bi bi-bar-chart-fill"></i></div>
+            <div style="width:100%">
+                <small>Confidence Level</small>
+                <div class="progress mt-2">
+                    <div class="progress-bar bg-success"
+                         style="width: {{ confidence }}%;">
+                        {{ confidence }}%
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="result-card card-orange">
+            <div class="icon-box"><i class="bi bi-heart-fill"></i></div>
+            <div>
+                <small>Benefits</small>
+                <ul>
+                    {% for b in benefits %}
+                    <li>{{ b }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+
+</div>
+</div>
+
+<!-- CHATBOT ICON -->
+<div id="chatbot-icon">
+    <i class="bi bi-chat-dots-fill"></i>
+</div>
+
+<!-- CHATBOT WINDOW -->
+<div id="chatbot-window">
+    <div id="chat-header">
+        <span>🌿 Plant AI Chatbot</span>
+        <button id="close-chat">&times;</button>
+    </div>
+    <div id="chat-body"></div>
+    <div style="display:flex;">
+        <input type="text" id="chat-input" placeholder="Ask about the plant...">
+        <button id="send-chat">Send</button>
+    </div>
+</div>
+
+<script>
+
+function previewImage(input){
+    const preview = document.getElementById("imagePreview");
+
+    if (input.files && input.files[0]) {
+        preview.src = URL.createObjectURL(input.files[0]);
+        preview.style.display = "block";
+    }
+}
+
+
+
+/* CHATBOT TOGGLE */
+const chatbotIcon = document.getElementById("chatbot-icon");
+const chatbotWindow = document.getElementById("chatbot-window");
+const closeChat = document.getElementById("close-chat");
+
+chatbotIcon.onclick = () => chatbotWindow.style.display = "flex";
+closeChat.onclick = () => chatbotWindow.style.display = "none";
+
+const chatBody = document.getElementById("chat-body");
+const chatInput = document.getElementById("chat-input");
+const sendChatBtn = document.getElementById("send-chat");
+
+// current detected plant (jinja)
+const plantName = "{{ prediction }}";
+
+// Add message to UI
+function addMessage(text, sender){
+    const div = document.createElement("div");
+    div.style.marginBottom = "8px";
+    div.style.padding = "6px 10px";
+    div.style.borderRadius = "8px";
+    div.style.maxWidth = "85%";
+    div.style.wordWrap = "break-word";
+    div.style.whiteSpace = "pre-wrap";
+
+
+    if(sender === "user"){
+        div.style.background = "#e8f5e9";
+        div.style.alignSelf = "flex-end";
+        div.innerText = text;
+    } else {
+        div.style.background = "#f1f1f1";
+        div.innerText = text;
+    }
+
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Send message
+function sendMessage(){
+    const question = chatInput.value.trim();
+    if(!question) return;
+
+    addMessage(question, "user");
+    chatInput.value = "";
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            question: question,
+            plant_name: plantName
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        addMessage(data.answer, "bot");
+    })
+    .catch(err => {
+        addMessage("Error talking to AI 😢", "bot");
+        console.error(err);
+    });
+}
+
+// Button click
+sendChatBtn.addEventListener("click", sendMessage);
+
+// Enter key
+chatInput.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        sendMessage();
+    }
+});
+</script>
+
+
+
+
+
+</body>
+</html>
